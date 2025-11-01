@@ -27,7 +27,7 @@ A suíte de testes completa, com todos os 20+ cenários (Gherkin, passos e evid�
 | **Descrição do Curso** | Sem limite de caracteres. | Área de Texto (Obrigatório) |
 | **Instrutor** | Padrão de texto. | Texto (Obrigatório) |
 | **URL de Imagem de Capa** | Deve aceitar apenas um formato de link (URL válida). | Link/URL (Obrigatório) |
-| **Data de Início** | Seleção via calendário, permitindo datas **a partir da data atual** (futuro). | Seletor de Data (Obrigatório) |
+| **Data de Inicio** | Seleção via calendário, permitindo datas **a partir da data atual** (futuro). | Seletor de Data (Obrigatório) |
 | **Data de Fim** | Seleção via calendário, permitindo datas **a partir da data atual** e **posterior à Data de Início**. | Seletor de Data (Obrigatório) |
 | **Número de Vagas** | Deve aceitar **apenas números inteiros maiores que 0** ($>0$). | Número (Obrigatório) |
 | **Tipo de Curso** | Lista de seleção (Dropdown) com opções: **Presencial** e **Online**. | Seleção (Obrigatório) |
