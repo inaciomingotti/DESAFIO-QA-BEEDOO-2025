@@ -5,29 +5,47 @@ Este repositório contém a documentação completa, os artefatos de teste e a a
 A suíte de testes completa, com todos os 20+ cenários (Gherkin, passos e evidências) está disponível na planilha de Casos de Teste vinculada na Seção 4.
 
 ---
+## 📝 História de Usuário
 
-## 1. User Story (História de Usuário)
+**Como um** Coordenador Pedagógico,
+**Eu quero** ter acesso a um sistema com abas para cadastro e visualização de cursos,
+**Para que** eu possa facilmente gerenciar (cadastrar, visualizar e excluir) os cursos oferecidos pela instituição.
 
-A História de Usuário abaixo foi criada com base na funcionalidade *existente* na aplicação fornecida para o teste (conforme CT-001).
+### 🎯 Critérios de Aceitação
 
-> **Como um** Coordenador Pedagógico,
-> **Eu quero** acessar um formulário para cadastrar novos cursos,
-> **Para que** eles fiquem disponíveis na listagem da plataforma.
+#### 1. Navegação e Estrutura Geral
 
-### Critérios de Aceite (AC)
+* **AC1.1:** O sistema deve ter duas abas principais: **"Cadastro de Cursos"** e **"Lista de Cursos"**.
+* **AC1.2:** A aba **"Cadastro de Cursos"** deve exibir o formulário de cadastro.
+* **AC1.3:** A aba **"Lista de Cursos"** deve exibir todos os cursos cadastrados em formato de **Card**, contendo um **botão de exclusão** para cada um.
 
-* **AC1:** O usuário deve ser capaz de cadastrar um curso com todos os dados válidos (CT-001).
-* **AC2:** O sistema **não** deve permitir o cadastro de um curso com campos obrigatórios vazios (CT-002, CT-006, CT-007, CT-008, CT-009, CT-010).
-* **AC3:** O sistema **não** deve permitir o cadastro de um curso com um `Nome` já existente (CT-011).
-* **AC4:** O sistema **não** deve permitir o cadastro de um curso com `Número de Vagas` negativo ou zero (CT-015, CT-016).
-* **AC5:** O sistema **não** deve permitir o cadastro de um curso onde a `Data de fim` seja anterior à `Data de início` (CT-003).
-* **AC6:** O sistema **não** deve aceitar um formato de `URL` inválido (CT-017).
-* **AC7:** O campo "Link da aula" deve ser obrigatório se o tipo for "Online" (CT-005).
-* **AC8:** O sistema **deve** permitir que um curso criado seja excluído da listagem (CT-018).
+#### 2. Formulário de Cadastro (Aba "Cadastro de Cursos")
 
----
+| Campo | Requisito de Validação | Tipo de Dado/Entrada |
+| :--- | :--- | :--- |
+| **Nome do Curso** | Aceita todos os caracteres (letras, números, símbolos). | Texto (Obrigatório) |
+| **Descrição do Curso** | Sem limite de caracteres. | Área de Texto (Obrigatório) |
+| **Instrutor** | Padrão de texto. | Texto (Obrigatório) |
+| **URL de Imagem de Capa** | Deve aceitar apenas um formato de link (URL válida). | Link/URL (Obrigatório) |
+| **Data de Início** | Seleção via calendário, permitindo datas **a partir da data atual** (futuro). | Seletor de Data (Obrigatório) |
+| **Data de Fim** | Seleção via calendário, permitindo datas **a partir da data atual** e **posterior à Data de Início**. | Seletor de Data (Obrigatório) |
+| **Número de Vagas** | Deve aceitar **apenas números inteiros maiores que 0** ($>0$). | Número (Obrigatório) |
+| **Tipo de Curso** | Lista de seleção (Dropdown) com opções: **Presencial** e **Online**. | Seleção (Obrigatório) |
 
-## 2. Metodologia e Relatório de Bugs
+* **AC2.1: Lógica Condicional (Tipo de Curso):**
+    * Se for selecionado **"Presencial"**, deve abrir um campo adicional de texto para **"Endereço"**.
+    * Se for selecionado **"Online"**, deve abrir um campo adicional **"Link do Curso"** que aceita **apenas formato de link (URL válida)**.
+* **AC2.2: Botão "Cadastrar Curso":** O botão deve estar **desabilitado** por padrão e só deve ser **habilitado** após o **preenchimento válido de todos os campos obrigatórios**, incluindo os campos condicionais.
+* **AC2.3: Fluxo de Cadastro:** Ao clicar no botão **"Cadastrar Curso"** (habilitado), as informações devem ser salvas com sucesso, um card do novo curso deve ser criado na lista, e o usuário deve ser **redirecionado automaticamente** para a aba **"Lista de Cursos"**.
+
+#### 3. Visualização e Exclusão (Aba "Lista de Cursos")
+
+* **AC3.1: Detalhes do Card:** Cada Card na lista deve exibir **todas as informações** preenchidas no formulário de cadastro.
+* **AC3.2: Exclusão:** Cada Card deve ter um **botão de exclusão** que, ao ser acionado, remove o curso da lista permanentemente (após confirmação, se necessário - *a ser definido*).
+* **AC3.3: Visualização Detalhada (Modal):** Ao clicar em qualquer parte do Card (exceto o botão de exclusão), deve ser aberto um **Modal** que exibe as informações detalhadas do curso.
+* **AC3.4: Link Clicável (Online):** Se o curso for do tipo **Online**, o Modal de visualização deve exibir o campo **"Link do Curso"** como um **link clicável** para a sala/plataforma.
+
+* ## 2. Metodologia e Relatório de Bugs
 
 ### Metodologia Utilizada
 
@@ -35,44 +53,108 @@ A metodologia de teste foi o **Teste Exploratório baseado em Cenários**.
 
 * **Justificativa:** Sem uma documentação prévia, iniciei com um "caminho feliz" (CT-001) para entender o fluxo. Em seguida, usei técnicas de **Análise de Valor Limite** (testando "0" e "-5" em vagas) e **Partição de Equivalência** (testando campos vazios, dados inválidos, etc.) para "quebrar" sistematicamente cada campo do formulário e das funcionalidades da lista.
 
-### Relatório Resumido de Bugs Críticos
+## 🚀 Sugestões de Melhorias Futuras
 
-A aplicação apresentou **falhas graves de validação e de funcionalidades básicas**. O formulário não valida regras de negócio no *back-end* e funcionalidades essenciais (como exclusão e lógica condicional) estão quebradas.
+### 1. Funcionalidades de Gerenciamento Avançado (CRUD)
 
-| ID do Teste | Bug Encontrado | Prioridade |
-| :--- | :--- | :--- |
-| **CT-015** | **DADO CORROMPIDO:** O sistema aceita vagas negativas (ex: "-5") e as exibe de forma corrompida na listagem como **"-5 ANOS"**. | **CRÍTICA** |
-| **CT-018** | **FUNCIONALIDADE QUEBRADA:** O botão "EXCLUIR CURSO" não funciona. | **ALTA** |
-| **CT-011** | **Duplicidade Permitida:** O sistema permite o cadastro de múltiplos cursos com o mesmo "Nome". | **ALTA** |
-| **CT-006** | **Campo Obrigatório Ignorado:** "Nome do curso" vazio é aceito. | **ALTA** |
-| **CT-007** | **Campo Obrigatório Ignorado:** "Descrição" vazia é aceita. | **ALTA** |
-| **CT-008** | **Campo Obrigatório Ignorado:** "Instrutor" vazio é aceito. | **ALTA** |
-| **CT-009** | **Campo Obrigatório Ignorado:** "URL da imagem" vazia é aceita. | **ALTA** |
-| **CT-010** | **Campo Obrigatório Ignorado:** "Número de Vagas" vazio é aceito. | **ALTA** |
-| **CT-005** | **Lógica Quebrada:** Permite cadastrar curso "Online" com "Link da aula" vazio. | **MÉDIA** |
-| **CT-003** | **Lógica de Datas Ignorada:** Permite que a "Data de Fim" seja anterior à "Data de Início". | **MÉDIA** |
-| **CT-017** | **Formato Inválido Ignorado:** Aceita "meu teste" como uma "URL da imagem" (exibe imagem em branco). | **MÉDIA** |
+* **Editar Curso**
+    * **Objetivo:** Adicionar um botão "Editar" ao Card ou Modal de visualização para permitir que o Coordenador Pedagógico atualize as informações de um curso existente, em vez de excluí-lo e recadastrá-lo.
+
+* **Duplicar Curso**
+    * **Objetivo:** Adicionar um botão para duplicar um curso. Útil para cursos recorrentes que só mudam a data e o número de vagas.
+
+* **Arquivamento/Status**
+    * **Objetivo:** Incluir um campo de status (`Ativo`, `Inativo`, `Concluído`) e uma opção de "Arquivar Curso" em vez de apenas "Excluir", mantendo o histórico.
+
+* **Notificação de Vagas Baixas**
+    * **Objetivo:** Implementar um alerta visual no Card quando o `Número de Vagas` restante atingir um limite baixo (ex: $< 5$).
+
+* **Filtros e Pesquisa na Lista**
+    * **Objetivo:** Adicionar filtros por `Tipo de Curso` (Presencial/Online), `Instrutor` e uma barra de pesquisa por `Nome do Curso` ou `Descrição` na aba "Lista de Cursos".
+
+* **Ordenação da Lista**
+    * **Objetivo:** Opção para ordenar a lista por `Data de Início` (próximo ou mais distante) ou `Nome do Curso`.
+
+* **Preview da URL da Imagem**
+    * **Objetivo:** No formulário de cadastro, exibir uma pré-visualização da imagem de capa após o Coordenador Pedagógico inserir a `URL de Imagem de Capa`, para validar se o link está correto.
+
+* **UX na Exclusão**
+    * **Objetivo:** Adicionar uma etapa de confirmação (**Modal de Confirmação**) antes de excluir permanentemente um curso, minimizando erros.
+
+* **Seleção de Instrutores**
+    * **Objetivo:** Mudar o campo `Instrutor` (atualmente texto livre) para uma **lista de seleção** que puxe dados de um cadastro de instrutores preexistente. Isso garante consistência nos nomes.
+
+* **Integração com Calendário**
+    * **Objetivo:** Oferecer a opção de sincronizar a `Data de Início` e `Data de Fim` com um calendário externo (Google Calendar, Outlook) ou do próprio sistema.
+
+* **Upload de Arquivo (Imagem)**
+    * **Objetivo:** Permitir o `upload de arquivo` para a Imagem de Capa, em vez de apenas aceitar uma URL, tornando a criação mais prática e menos dependente de links externos.
+
+
+* **Autenticação e Permissões**
+    * **Objetivo:** Se a aplicação for usada por mais pessoas, implementar controle de acesso para garantir que **somente** o Coordenador Pedagógico possa usar a aba de cadastro e exclusão.
+
+* **Performance da Lista**
+    * **Objetivo:** Garantir que a lista de cursos carregue rapidamente (em menos de 2 segundos), mesmo após o cadastro de centenas de cursos (teste de volume).
 
 ---
 
-## 3. Sugestões de Melhoria e Análise Crítica
+## ⚠️ Vulnerabilidades Potenciais da Aplicação Inicial
 
-Durante os testes, foram identificadas funcionalidades ausentes e oportunidades de melhoria que não são bugs, mas sim falhas de requisito ou design.
+### 1. Injeção de Código (XSS e SQL Injection)
 
-### Melhoria 1: Funcionalidade "Editar Curso" Ausente (GAP-001)
+#### Cross-Site Scripting (XSS)
+* **Onde Ocorre:** Campos de Texto Livre: `Nome do Curso`, `Descrição do Curso`, `Instrutor`, `Endereço`.
+* **Detalhes:** O Coordenador pode inserir código malicioso (`<script>alert('hack');</script>`) nesses campos. Quando outro usuário (ou ele mesmo) visualiza o Card ou o Modal, o navegador executa o script, o que pode levar a roubo de cookies ou sessões.
 
-* **Observação:** A aplicação está com o ciclo CRUD (Create, Read, Update, Delete) incompleto. O Criar (`C`) e o Ler (`R`) funcionam (embora `C` seja bugado), mas o **Excluir (`D`) está quebrado (Bug CT-018)** e o **Editar/Atualizar (`U`) é inexistente (GAP-001)**.
-* **Sugestão:** Implementar a funcionalidade de "Editar" para permitir ao usuário corrigir dados do curso sem precisar excluí-lo e criá-lo novamente.
+#### SQL Injection (SQLi)
+* **Onde Ocorre:** Formulário de Cadastro e Exclusão.
+* **Detalhes:** Se a aplicação não higienizar as entradas do formulário (`Nome do Curso`, etc.) antes de construir a *query* de banco de dados, um atacante pode injetar comandos SQL que alteram, deletam ou roubam dados.
 
-### Melhoria 2: Lógica de Negócio para "Vagas"
+---
 
-* **Observação:** O formulário pede "Número de Vagas" para todos os tipos de curso. Isso não faz sentido de negócio para um curso "Online", que (geralmente) tem vagas ilimitadas.
-* **Sugestão:** Ocultar o campo "Número de Vagas" quando o "Tipo de curso" for "Online" para evitar confusão do usuário e dados desnecessários.
+### 2. Validação e Manipulação de Entradas Críticas
 
-### Melhoria 3: Correção de UI/UX (CT-019)
+#### Injeção de URL Maliciosa
+* **Onde Ocorre:** Campos de Link/URL: `URL de Imagem de Capa`, `Link do Curso`.
+* **Detalhes:** Se a validação for superficial (apenas verifica se contém "http"), um atacante pode inserir links para sites de *phishing* ou conteúdo malicioso.
 
-* **Observação:** Os botões e links de navegação para o cadastro estão com o texto "Curso Cadastrar" (Substantivo + Verbo).
-* **Sugestão:** Corrigir o texto para o padrão "Cadastrar Curso" (Verbo + Substantivo), melhorando a leitura e o profissionalismo da interface.
+#### Bypass de Validação de Números
+* **Onde Ocorre:** Campo: `Número de Vagas`.
+* **Detalhes:** A validação é feita no *front-end*. Um atacante pode usar ferramentas de *proxy* para enviar um valor não numérico ou um número negativo/zero diretamente para o *back-end*, causando erros ou inconsistência de dados. **A validação deve ser repetida no *back-end***.
+
+#### Injeção de Caminho de Arquivo (Path Traversal)
+* **Onde Ocorre:** `URL de Imagem de Capa`.
+* **Detalhes:** Se o servidor processa a URL de forma insegura, um atacante pode tentar usar sequências como `../` na URL para acessar arquivos confidenciais no sistema operacional do servidor.
+
+---
+
+### 3. Falta de Controle de Acesso e Autorização
+
+#### Quebra de Controle de Acesso (Insecure Direct Object Reference - IDOR)
+* **Onde Ocorre:** Exclusão de Curso (Botão de Excluir).
+* **Detalhes:** Se o ID do curso a ser excluído for facilmente previsível e enviado diretamente na requisição (ex: `DELETE /cursos/123`), um atacante não autorizado pode tentar excluir outros cursos modificando esse ID.
+
+#### Ausência de Autenticação/Autorização
+* **Onde Ocorre:** Em toda a aplicação.
+* **Detalhes:** Se a aplicação não exige autenticação robusta e garante que **apenas** o Coordenador Pedagógico tem permissão, qualquer pessoa com o link do site pode manipular os cursos.
+
+---
+
+### 4. Vulnerabilidades de Confidencialidade e Dados
+
+#### Exposição de Dados Sensíveis
+* **Onde Ocorre:** Transmissão de Dados.
+* **Detalhes:** Se a comunicação entre o navegador e o servidor não usar **HTTPS**, as informações cadastradas (nomes, links, endereços) podem ser interceptadas.
+
+---
+
+### ✅ Medidas Mitigadoras Recomendadas
+
+* **Sempre Valide no *Back-end***: Nunca confie apenas nas validações de *front-end* (JavaScript). Repita todas as validações (datas, números, links) no servidor.
+* **Codificação de Saída (Output Encoding)**: Use funções de *encoding* antes de renderizar dados fornecidos pelo usuário (como `Nome do Curso`) no HTML. Isso impede a execução de scripts XSS.
+* **Consultas Parametrizadas**: Use *Prepared Statements* ou ORMs para todas as interações com o banco de dados para evitar SQL Injection.
+* **Implementar Autenticação e Autorização**: Garanta que todas as rotas críticas (Cadastro e Exclusão) só possam ser acessadas por um usuário autenticado com a permissão correta (Coordenador Pedagógico).
 
 ---
 
