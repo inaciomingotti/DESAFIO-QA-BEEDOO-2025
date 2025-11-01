@@ -81,7 +81,7 @@ Durante os testes, além dos bugs de validação, foram identificadas oportunida
 ## 4. Artefatos do Teste (Links)
 
 * **[➡️ Link para a Suíte de Testes Completa (Google Sheets)]**
-    * `[COLOQUE SEU LINK DO GOOGLE SHEETS AQUI]`
+    * `https://docs.google.com/spreadsheets/d/1VLxl_z2kX3LU-CFD4hr3aIymFkuK3F5rADGRscPjWzk/edit?gid=0#gid=0`
 
 * **[➡️ Link para Evidências em Vídeo - MP4 (Google Drive)]**
-    * `[COLOQUE SEU LINK DO GOOGLE DRIVE AQUI]`
+    * ` `
