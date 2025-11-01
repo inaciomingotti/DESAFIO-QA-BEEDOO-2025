@@ -51,7 +51,7 @@ A suíte de testes completa, com todos os 20+ cenários (Gherkin, passos e evid�
 
 A metodologia de teste foi o **Teste Exploratório baseado em Cenários**.
 
-* **Justificativa:** Sem uma documentação prévia, iniciei com um "caminho feliz" (CT-001) para entender o fluxo. Em seguida, usei técnicas de **Análise de Valor Limite** (testando "0" e "-5" em vagas) e **Partição de Equivalência** (testando campos vazios, dados inválidos, etc.) para "quebrar" sistematicamente cada campo do formulário e das funcionalidades da lista.
+* **Justificativa:** Sem uma documentação prévia, iniciei com um "caminho feliz"  para entender o fluxo. Em seguida, usei técnicas de **Análise de Valor Limite** e **Partição de Equivalência** (testando campos vazios, dados inválidos, etc.) para "quebrar" sistematicamente cada campo do formulário e das funcionalidades da lista.
 
 ## 🚀 Sugestões de Melhorias Futuras
 
