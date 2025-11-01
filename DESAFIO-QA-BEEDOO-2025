@@ -1,9 +1,0 @@
-📁 DESAFIO-QA-BEEDOO-2025
-│
-├── 📄 README.md               ← Documentação principal (em Markdown)
-│
-├── 📁 evidencias              ← Pasta para guardar prints, vídeos ou links
-│
-├── 📁 documentos              ← PDF opcional da documentação
-│
-└── 📁 testes                  ← Casos de teste (Gherkin ou passo a passo)
