@@ -161,7 +161,7 @@ A metodologia de teste foi o **Teste Exploratório baseado em Cenários**.
 ## 4. Artefatos do Teste (Links)
 
 * **[➡️ Link para a Suíte de Testes Completa (Google Sheets)]**
-    * `https://docs.google.com/spreadsheets/d/1VLxl_z2kX3LU-CFD4hr3aIymFkuK3F5rADGRscPjWzk/edit?gid=0#gid=0`
+    * `https://docs.google.com/spreadsheets/d/1VLxl_z2kX3LU-CFD4hr3aIymFkuK3F5rADGRscPjWzk/edit?gid=0#gid=0 `
 
-* **[➡️ Link para Evidências em Vídeo - MP4 (Google Drive)]**
-    * ` `
+* **[➡️ Link para Evidências em Vídeo - MP4 ]**
+    * ` https://drive.google.com/drive/folders/1rxClgYHFGMf371gx9OO3HNRZXArj9-YZ?usp=sharing `
