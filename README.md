@@ -165,3 +165,5 @@ A metodologia de teste foi o **Teste Exploratório baseado em Cenários**.
 
 * **[➡️ Link para Evidências em Vídeo - MP4 ]**
     * ` https://drive.google.com/drive/folders/1rxClgYHFGMf371gx9OO3HNRZXArj9-YZ?usp=sharing `
+ * **[➡️ Link para Evidências em FOTOS ]**
+    * https://drive.google.com/drive/folders/1WOIQSvKhBqRGW4jJIaM4QhVcjyJe3BTn?usp=drive_link
